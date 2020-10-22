@@ -45,7 +45,7 @@ bool sortingTest(int* countingSorted, int* selectionSorted, int length)
 	return true;
 }
 
-int main() {
+int main(void) {
 
 	return 0;
 }
