@@ -30,7 +30,15 @@ Sort * ExamplesNamespace::GetSortingContext(uint32_t t)
     return result;
 }
 
+void IntElement::printValue()
+{
+	std::cout << this->m_digit;
+}
 
+void StringElement::printValue()
+{
+	std::cout << this->m_text;
+}
 
 void BSort::ASort()
 {

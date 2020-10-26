@@ -22,6 +22,7 @@ public:
     virtual ~Element() {}
     virtual int Compare(Element *other) = 0;
     virtual void swap(Element *other) = 0;
+    virtual void printValue() = 0;
 };
 
 class Sort
@@ -66,7 +67,7 @@ public:
     ~IntElement(){}
     void swap(Element *other);
     int Compare(Element *other);
-
+    void printValue();
 };
 
 class StringElement : public Element
@@ -79,6 +80,7 @@ public:
 	~StringElement() {}
 	void swap(Element *other);
 	int Compare(Element *other);
+	void printValue();
 };
 
 Sort * GetSortingContext(uint32_t t);

@@ -15,8 +15,13 @@ using namespace std;
 
 #define NUMBEROFSORTELEMENTS 10
 
-//TODO overloaded operator printing
-//void printArr(Element *arr);
+void printArr(Element *arr)
+{
+	for(int i = 0; i < NUMBEROFSORTELEMENTS; ++i)
+	{
+		arr[i].printValue();
+	}
+}
 
 int main()
 {
@@ -37,7 +42,7 @@ int main()
 	sortctx1->SetElementsArray(sortelement1, NUMBEROFSORTELEMENTS);
 	sortctx1->DSort();
 
-//	printArr(sortelement1);
+	printArr(sortelement1);
 
 	StringElement *sortelement = new StringElement[NUMBEROFSORTELEMENTS];
 	sortelement[0].setValue("lion");
@@ -56,7 +61,7 @@ int main()
 	sortctx2->SetElementsArray(sortelement, NUMBEROFSORTELEMENTS);
 	sortctx2->ASort();
 
-//	printArr(sortelement);
+	printArr(sortelement);
 
 	return 0;
 }
