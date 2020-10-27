@@ -1,10 +1,34 @@
 #include <iostream>
 using namespace std;
+void swap(int* a, int* b)
+{
+	int temp = *a;
 
+	*a = *b;
+	*b = temp;
+}
+
+int* selectionSort(int argumentArr[], int size)
+{
+	int* arr = argumentArr;
+	int maxI;
+	//sort
+	for (int i = 0; i < (size - 1); i++)
+	{
+		maxI = i;
+		for (int j = i + 1; j < size; j++)
+		{
+			if (arr[j] < arr[maxI])
+			{
+				maxI = j;
+			}
+			swap(&arr[j], &arr[maxI]);
+		}
+	}
+	return arr;
+}
 //TODO counting sort
 int* countingSort(int* arr, int &size) {return arr;};
-//TODO selection sort
-int* selectionSort(int* arr, int &size) {return arr;};
 
 bool sortingTest(int* arrToSort, int size)
 {
