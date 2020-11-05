@@ -7,8 +7,8 @@ Rectangle::~Rectangle(){}
 Rectangle::Rectangle(std::string id, int width, int height, int x, int y)
 {
 	this->id = id;
-	this->coordsTopLeft = new int[]{ x, y };
-	this->coordsBotRight = new int[] {x + width, y - height};
+	this->coordsTopLeft = new int[2] { x, y };
+	this->coordsBotRight = new int[2] {x + width, y - height};
 }
 
 std::string Rectangle::getId() const

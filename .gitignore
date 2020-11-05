@@ -1,4 +1,2 @@
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-PP_Festo.sln
+.vscode
+bin
