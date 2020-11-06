@@ -2,7 +2,12 @@
 #include "rectangle.h"
 
 Rectangle::Rectangle(){}
-Rectangle::~Rectangle(){}
+
+Rectangle::~Rectangle()
+{
+	delete[] this->coordsTopLeft;
+	delete[] this->coordsBotRight;
+}
 
 Rectangle::Rectangle(std::string id, int width, int height, int x, int y)
 {
