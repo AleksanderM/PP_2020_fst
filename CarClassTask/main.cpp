@@ -83,8 +83,12 @@ int main()
         getCommand(command);
     }
 
+    for (int i = 0; i < carCount; i++)
+    {
+        std::cout << cars[i];
+    }
+    
     delete[] cars;
-    delete[] command;
 
     return 0;
 }

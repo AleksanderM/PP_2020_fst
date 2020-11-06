@@ -27,7 +27,6 @@ void Car::drive(int distance)
     {
         this->fuel -= distance * this->fuelConsumption;
         this->distanceTraveled += distance;
-        std::cout << *this << std::endl;
     }
 }
 
