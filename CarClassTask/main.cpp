@@ -4,14 +4,15 @@
 
 #define COMMAND_LENGTH 3
 
-void inputCars(Car* cars, int carCount)
+void inputCars(Car *cars, int carCount)
 {
+    std::string model = "";
+    double fuel = 0.0;
+    double fuelConsumption = 0.0;
+
     for (int i = 0; i < carCount; i++)
     {
         std::cout << "Enter the model, fuel amd fuel consumption of the car:" << std::endl;
-        std::string model = "";
-        double fuel = 0.0;
-        double fuelConsumption = 0.0;
         std::cin >> model >> fuel >> fuelConsumption;
 
         cars[i] = Car(model, fuel, fuelConsumption);
@@ -22,9 +23,9 @@ void getCommand(std::string command[])
 {
     std::cout << "Enter command:" << std::endl;
     std::string line;
+    std::string temp;
     std::getline(std::cin, line);
     std::stringstream ssin(line);
-    std::string temp;
     int i = 0;
 
     while (i < COMMAND_LENGTH && std::getline(ssin, temp, ' '))
@@ -34,7 +35,7 @@ void getCommand(std::string command[])
     }
 }
 
-void executeCommand(std::string command[], Car* cars, int carCount)
+void executeCommand(std::string command[], Car *cars, int carCount)
 {
     std::string model = command[1];
     int distance = std::stoi(command[2]);
@@ -61,7 +62,7 @@ int main()
     std::cout << "Enter size:" << std::endl;
     std::cin >> carCount;
 
-    Car* cars = new Car[carCount];
+    Car *cars = new Car[carCount];
     inputCars(cars, carCount);
     std::cin.ignore();
 

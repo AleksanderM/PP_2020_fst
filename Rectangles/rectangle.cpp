@@ -28,5 +28,5 @@ std::string Rectangle::overlaps(Rectangle& other)
 		return "true";
 	}
 
-	return "true";
+	return "false";
 }

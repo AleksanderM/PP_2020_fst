@@ -63,4 +63,6 @@ int main()
             }
         }
     }
+
+    delete[] rectangles;
 }
