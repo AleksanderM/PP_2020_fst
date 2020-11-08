@@ -10,9 +10,11 @@ std::ostream &operator<<(std::ostream &out, Company &c);
 class Company
 {
 private:
-    std::string name;
-    std::string branch;
-    double salary;
+    std::string m_name;
+    std::string m_branch;
+    double m_salary;
+    
+    void setSalary(double salary);
 public:
     Company();
     Company(Company &c);

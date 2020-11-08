@@ -10,8 +10,8 @@ std::ostream &operator<<(std::ostream &out, Pokemon &p);
 class Pokemon
 {
 private:
-    std::string name;
-    std::string type;
+    std::string m_name;
+    std::string m_type;
 public:
     Pokemon();
     Pokemon(Pokemon &p);

@@ -4,20 +4,20 @@ Pokemon::Pokemon() {}
 
 Pokemon::Pokemon(Pokemon &p)
 {
-    this->name = p.name;
-    this->type = p.type;
+    this->m_name = p.m_name;
+    this->m_type = p.m_type;
 }
 
 Pokemon::Pokemon(std::string name, std::string type)
 {
-    this->name = name;
-    this->type = type;
+    m_name = name;
+    m_type = type;
 }
 
 Pokemon::~Pokemon() {}
 
 std::ostream &operator<<(std::ostream &out, Pokemon &p)
 {
-    out << p.name << " " << p.type << std::endl;
+    out << " " << p.m_name << " " << p.m_type << std::endl;
     return out;
 }

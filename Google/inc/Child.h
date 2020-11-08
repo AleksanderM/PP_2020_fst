@@ -10,8 +10,8 @@ std::ostream &operator<<(std::ostream &out, Child &c);
 class Child
 {
 private:
-    std::string name;
-    std::string birthday;
+    std::string m_name;
+    std::string m_birthday;
 public:
     Child();
     Child(Child &c);

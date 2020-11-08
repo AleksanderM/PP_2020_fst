@@ -1,22 +1,27 @@
 #ifndef CAR_H
 #define CAR_H
 
+#include <iostream>
+#include <string>
+
+class Car;
+std::ostream &operator<<(std::ostream &out, Car &c);
+
 class Car
 {
 private:
-    /* data */
+    std::string m_model;
+    int m_speed;
+
+    void setSpeed(int speed);
+
 public:
-    Car(/* args */);
+    Car();
+    Car(Car &c);
+    Car(std::string model, int speed);
     ~Car();
+
+    friend std::ostream &operator<<(std::ostream &out, Car &c);
 };
-
-Car::Car(/* args */)
-{
-}
-
-Car::~Car()
-{
-}
-
 
 #endif
