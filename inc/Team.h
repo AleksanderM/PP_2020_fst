@@ -13,6 +13,7 @@ private:
     int m_rating;
     std::vector<Player> m_players;
 
+    void setName(std::string name);
     void calculateRating();
 
 public:

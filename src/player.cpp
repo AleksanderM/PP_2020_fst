@@ -1,16 +1,36 @@
 #include "../inc/Player.h"
+#include "../inc/Validator.h"
 
-Player::Player(){}
+Player::Player() {}
 
 Player::Player(std::string name, Stats &stats)
 {
-    m_name = name;
-    m_stats = Stats(stats);
+    try
+    {
+        setName(name);
+        m_stats = Stats(stats);
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
 
-Player::~Player() 
+Player::~Player()
 {
     m_stats.~Stats();
+}
+
+void Player::setName(std::string name)
+{
+    if (Validator::validateName(name))
+    {
+        m_name = name;
+    }
+    else
+    {
+        throw std::invalid_argument("A name should not be empty.");
+    }
 }
 
 std::string Player::getName()

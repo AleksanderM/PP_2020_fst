@@ -1,13 +1,33 @@
 #include "../inc/Team.h"
+#include "../inc/Validator.h"
 
 Team::Team() {}
 
 Team::Team(std::string name)
 {
-    m_name = name;
+    try
+    {
+        setName(name);
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 Team::~Team() {}
+
+void Team::setName(std::string name)
+{
+    if (Validator::validateName(name))
+    {
+        m_name = name;
+    }
+    else
+    {
+        throw std::invalid_argument("A name should not be empty.");
+    }
+}
 
 void Team::calculateRating()
 {

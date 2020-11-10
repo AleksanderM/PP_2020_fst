@@ -11,6 +11,8 @@ private:
     std::string m_name;
     Stats m_stats;
 
+    void setName(std::string name);
+
 public:
     Player();
     Player(std::string name, Stats &stats);
