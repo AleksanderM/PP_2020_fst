@@ -3,7 +3,7 @@
 #include <algorithm>
 #include "Team.h"
 
-bool is_valid(const std::string& n_str)
+bool isNumberValueValid(const std::string& n_str, std::string n_stat)
 {
 	bool is_digit = n_str.find_first_not_of("0123456789") == std::string::npos;
 	bool is_inRange = false;
@@ -20,10 +20,29 @@ bool is_valid(const std::string& n_str)
 	}
 	else 
 	{
-		std::cout << "Every stat should be between 0 and 100.\n";
+		std::cout << n_stat <<" should be between 0 and 100.\n";
 	}
 
 	return (is_digit && is_inRange);
+}
+
+bool isStringValueValid(const std::string& n_str)
+{
+	for (int i = 0; i < n_str.length(); i++)
+	{
+		if (n_str[i] == ' ') 
+		{
+			std::cout << "A name should not be empty. \n";
+			return false;
+		}
+	}
+	if (n_str.compare("null") == 0 || n_str.compare("empty") == 0)
+	{
+		std::cout << "A name should not be empty. \n";
+		return false;
+	}
+
+	return true;
 }
 
 std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
@@ -89,6 +108,16 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
 
+			if (isStringValueValid(teamName))
+			{
+				//ok
+			}
+			else
+			{
+				t_flag = false;
+			}
+
+
 			i += 1;
 
 			//extracting player name
@@ -100,6 +129,15 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				}
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
+
+			if (isStringValueValid(t_playerName))
+			{
+				//ok
+			}
+			else
+			{
+				t_flag = false;
+			}
 
 			i += 1;
 
@@ -113,7 +151,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
 
-			if (is_valid(t_strDurability)) 
+			if (isNumberValueValid(t_strDurability, "Durability")) 
 			{
 				//ok
 			}
@@ -134,7 +172,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
 
-			if (is_valid(t_strSprint))
+			if (isNumberValueValid(t_strSprint, "Sprint"))
 			{
 				//ok
 			}
@@ -155,7 +193,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
 
-			if (is_valid(t_strDribble))
+			if (isNumberValueValid(t_strDribble, "Dribble"))
 			{
 				//ok
 			}
@@ -177,7 +215,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (input[i] != ';' && t_flag == true);
 
-			if (is_valid(t_strPasses))
+			if (isNumberValueValid(t_strPasses, "Passes"))
 			{
 				//ok
 			}
@@ -198,7 +236,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				i += 1;
 			} while (i < input.length() && t_flag == true);
 
-			if (is_valid(t_strShooting))
+			if (isNumberValueValid(t_strShooting, "Shooting"))
 			{
 				//ok
 			}
@@ -235,7 +273,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				}
 				if (t_teamFound != true)
 				{
-					std::cout << "Invalid Team Name! \n";
+					std::cout << "Team "<< teamName << " does not exists.\n";
 				}
 			}
 		}
@@ -308,7 +346,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			}
 			if (t_flag)
 			{
-				std::cout << "element not found! \n";
+				std::cout << "Team " << teamName << " does not exists.\n";
 			}
 		}
 	else

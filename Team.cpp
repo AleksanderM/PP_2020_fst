@@ -39,7 +39,7 @@ bool Team::removePlayer(std::string n_player)
 	}
 	if (t_flag) 
 	{
-		std::cout << "Player " << n_player << " is not in Arsenal team.\n";
+		std::cout << "Player " << n_player << " is not in " << m_name << " team.\n";
 		return false;
 	}
 
