@@ -3,17 +3,16 @@
 
 Player::Player() {}
 
-Player::Player(std::string name, Stats &stats)
+Player::Player(std::string name, Stats *stats)
 {
-    try
-    {
-        setName(name);
-        m_stats = Stats(stats);
-    }
-    catch (const std::invalid_argument &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    setName(name);
+    m_stats = Stats(*stats);
+}
+
+Player::Player(Player &p)
+{
+    this->m_name = p.m_name;
+    this->m_stats = Stats(p.m_stats);
 }
 
 Player::~Player()

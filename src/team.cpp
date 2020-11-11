@@ -1,18 +1,14 @@
 #include "../inc/Team.h"
 #include "../inc/Validator.h"
 
-Team::Team() {}
+Team::Team() 
+{
+    m_rating = 0;
+}
 
 Team::Team(std::string name)
 {
-    try
-    {
-        setName(name);
-    }
-    catch (const std::invalid_argument &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    setName(name);
 }
 
 Team::~Team() {}
@@ -35,16 +31,16 @@ void Team::calculateRating()
 
     for (auto i = m_players.begin(); i != m_players.end(); i++)
     {
-        m_rating += i->getAvgStat();
+        m_rating += (*i)->getAvgStat();
     }
 
     m_rating /= m_players.size();
 }
 
-void Team::addPlayer(Player &p)
+void Team::addPlayer(Player *p)
 {
     m_players.push_back(p);
-    std::cout << "Added player " << p.getName() << std::endl;
+    std::cout << "Added player " << p->getName() << std::endl;
 }
 
 void Team::removePlayer(std::string name)
@@ -53,7 +49,7 @@ void Team::removePlayer(std::string name)
 
     for (auto i = m_players.begin(); i != m_players.end(); i++)
     {
-        if (i->getName().compare(name) == 0)
+        if ((*i)->getName().compare(name) == 0)
         {
             isFound = true;
             m_players.erase(i);
@@ -68,8 +64,19 @@ void Team::removePlayer(std::string name)
     }
 }
 
+std::vector<Player *> Team::getPlayers() const
+{
+    return m_players;
+}
+
+std::string Team::getName()
+{
+    return m_name;
+}
+
 int Team::getRating()
 {
+    calculateRating();
     return m_rating;
 }
 
@@ -81,7 +88,7 @@ std::ostream &Team::operator<<(std::ostream &out)
 
     for (auto i = m_players.begin(); i != m_players.end(); i++)
     {
-        out << (i - m_players.begin());
+        out << &(*i);
     }
 
     return out;

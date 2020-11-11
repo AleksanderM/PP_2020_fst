@@ -2,22 +2,22 @@
 #include "../inc/Validator.h"
 #include "../inc/Stats.h"
 
-Stats::Stats() {}
+Stats::Stats()
+{
+    int m_endurance = 0;
+    int m_sprint = 0;
+    int m_dribble = 0;
+    int m_pass = 0;
+    int m_shot = 0;
+}
 
 Stats::Stats(int endurance, int sprint, int dribble, int pass, int shot)
 {
-    try
-    {
-        setEndurance(endurance);
-        setSprint(sprint);
-        setDribble(dribble);
-        setPass(pass);
-        setShot(shot);
-    }
-    catch (const std::invalid_argument &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    setEndurance(endurance);
+    setSprint(sprint);
+    setDribble(dribble);
+    setPass(pass);
+    setShot(shot);
 }
 
 Stats::Stats(Stats &s)

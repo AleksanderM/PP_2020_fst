@@ -15,7 +15,8 @@ private:
 
 public:
     Player();
-    Player(std::string name, Stats &stats);
+    Player(std::string name, Stats* stats);
+    Player(Player &p);
     ~Player();
 
     std::string getName();
