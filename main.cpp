@@ -45,6 +45,34 @@ bool isStringValueValid(const std::string& n_str)
 	return true;
 }
 
+void extractionModule(std::string &t_strValue, int& i, bool& t_flag, const std::string input)
+{
+	do 
+	{
+		t_strValue += input[i];
+		if (input[i] == ' ')
+		{
+			t_flag = false;
+		}
+		i += 1;
+	} while (input[i] != ';' && t_flag == true);
+
+}
+
+void extractionModuleLastLoop(std::string& t_strValue, int& i, bool& t_flag, const std::string input) 
+{
+	do 
+	{
+		t_strValue += input[i];
+		if (input[i] == ' ')
+		{
+			t_flag = false;
+		}
+		i += 1;
+	} while (i < input.length() && t_flag == true);
+
+}
+
 std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 {
 	std::string result = "";
@@ -65,14 +93,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 		{
 			//team;
 			bool t_flag = true;
-			do {
-				teamName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (i < input.length() && t_flag == true);
+			extractionModuleLastLoop(teamName, i, t_flag, input);
 			if (t_flag == true)
 			{
 				n_teams.push_back(Team(teamName));
@@ -99,20 +120,10 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			std::string t_strPasses = "";
 			std::string t_strShooting = "";
 
-			do {
-				teamName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
 
-			if (isStringValueValid(teamName))
-			{
-				//ok
-			}
-			else
+			extractionModule(teamName, i, t_flag, input);
+
+			if (!isStringValueValid(teamName))
 			{
 				t_flag = false;
 			}
@@ -121,20 +132,10 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			i += 1;
 
 			//extracting player name
-			do {
-				t_playerName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
 
-			if (isStringValueValid(t_playerName))
-			{
-				//ok
-			}
-			else
+			extractionModule(t_playerName, i, t_flag, input);
+
+			if (!isStringValueValid(t_playerName))
 			{
 				t_flag = false;
 			}
@@ -142,20 +143,10 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			i += 1;
 
 			//extracting durability rating 		
-			do {
-				t_strDurability += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
 
-			if (isNumberValueValid(t_strDurability, "Durability")) 
-			{
-				//ok
-			}
-			else 
+			extractionModule(t_strDurability, i, t_flag, input);
+
+			if (!isNumberValueValid(t_strDurability, "Durability")) 
 			{
 				t_flag = false;
 			}
@@ -163,20 +154,10 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			i += 1;
 
 			//extracting sprint rating 		
-			do {
-				t_strSprint += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
 
-			if (isNumberValueValid(t_strSprint, "Sprint"))
-			{
-				//ok
-			}
-			else
+			extractionModule(t_strSprint, i, t_flag, input);
+
+			if (!isNumberValueValid(t_strSprint, "Sprint"))
 			{
 				t_flag = false;
 			}
@@ -184,20 +165,10 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			i += 1;
 
 			//extracting dribble rating 		
-			do {
-				t_strDribble += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
 
-			if (isNumberValueValid(t_strDribble, "Dribble"))
-			{
-				//ok
-			}
-			else
+			extractionModule(t_strDribble, i, t_flag, input);
+
+			if (!isNumberValueValid(t_strDribble, "Dribble"))
 			{
 				t_flag = false;
 			}
@@ -206,41 +177,20 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			i += 1;
 
 			//extracting passes rating 		
-			do {
-				t_strPasses += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
+			extractionModule(t_strPasses, i, t_flag, input);
 
-			if (isNumberValueValid(t_strPasses, "Passes"))
-			{
-				//ok
-			}
-			else
+			if (!isNumberValueValid(t_strPasses, "Passes"))
 			{
 				t_flag = false;
 			}
 
 			i += 1;
 
-			//extracting shooting rating 		
-			do {
-				t_strShooting += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (i < input.length() && t_flag == true);
+			//extracting shooting rating
 
-			if (isNumberValueValid(t_strShooting, "Shooting"))
-			{
-				//ok
-			}
-			else
+			extractionModuleLastLoop(t_strShooting, i, t_flag, input);
+
+			if (!isNumberValueValid(t_strShooting, "Shooting"))
 			{
 				t_flag = false;
 			}
@@ -252,10 +202,6 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 				t_dribble = std::stoi(t_strDribble);
 				t_passes = std::stoi(t_strPasses);
 				t_shooting = std::stoi(t_strShooting);
-			}
-			else
-			{
-				std::cout << "Incorrect data! " << "\n";
 			}
 
 			//t_teamFound => remembers if team is found
@@ -283,26 +229,13 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 			bool t_flag = true;
 			std::string t_playerName = "";
 
-			do {
-				teamName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (input[i] != ';' && t_flag == true);
+			extractionModule(teamName, i, t_flag, input);
+
 
 			i += 1;
 
 			//extracting player name
-			do {
-				t_playerName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (i < input.length() && t_flag == true);
+			extractionModuleLastLoop(t_playerName, i, t_flag, input);
 
 			//reusing t_flag
 			t_flag = false;
@@ -324,14 +257,7 @@ std::string analyzeInput (std::string input, std::vector<Team>& n_teams)
 		{
 			//rating;
 			bool t_flag = true;
-			do {
-				teamName += input[i];
-				if (input[i] == ' ')
-				{
-					t_flag = false;
-				}
-				i += 1;
-			} while (i < input.length() && t_flag == true);
+			extractionModuleLastLoop(teamName, i, t_flag, input);
 
 			//reusing variable t_flag
 			t_flag = true;
